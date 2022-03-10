@@ -20,9 +20,15 @@ pipeline {
       }
     }
     stage('Run tests') {
-      steps {      
-        shell(docker run ${dockerImage.id} npm test)
-        
+      steps {
+        script {        
+          if (isUnix()){
+            sh "docker run ${dockerImage.id} npm test"
+          }
+          else {
+            bat "docker run ${dockerImage.id} npm test"
+          }
+        }        
       }
     }
     stage('Publish') {
