@@ -22,12 +22,12 @@ pipeline {
     stage('Run tests') {
       steps {
         script {        
-          if (isUnix()){
+          //if (isUnix()){
             sh "docker run ${dockerImage.id} npm test"
-          }
-          else {
+          //}
+          /* else {
             bat "docker run ${dockerImage.id} npm test"
-          }
+          } */
         }        
       }
     }
